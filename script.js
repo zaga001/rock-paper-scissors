@@ -31,13 +31,13 @@ function playGame() {
         if (humanSelection === computerSelection) {
             console.log("It's a tie!");
         } else if ((humanSelection === 'rock' && computerSelection === 'scissors') ||
-            (humanSelection === 'scissors' && computerSelection === 'papers') ||
-            (humanSelection === 'papers' && computerSelection === 'rock')) {
+            (humanSelection === 'scissors' && computerSelection === 'paper') ||
+            (humanSelection === 'paper' && computerSelection === 'rock')) {
             console.log(`You win! ${humanSelection.charAt(0).toUpperCase() + humanSelection.slice(1)} beats ${computerSelection}.`);
-            humanScore += 1;
+            humanScore++;
         } else {
             console.log(`You lose! ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${humanSelection}.`);
-            computerScore += 1;
+            computerScore++;
         }
     }
 
