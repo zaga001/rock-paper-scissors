@@ -9,30 +9,44 @@ function getComputerChoice() {
             return "scissors";
     }
 }
+
 function getHumanChoice() {
     let humanChoice = prompt('Choose rock, paper, or scissors.').toLowerCase();
     if (humanChoice !== 'rock' && humanChoice !== 'paper' && humanChoice !== 'scissors') {
-        return 'error';
+        console.log('Invalid choice. Try again.');
+        return getHumanChoice();
     } else {
         return humanChoice;
     }
 }
-let humanScore = 0;
-let computerScore = 0;
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-        console.log("It's a tie!");
-    } else if ((humanChoice === 'rock' && computerChoice === 'scissors') || (humanChoice === 'scissors' && computerChoice === 'papers') || (humanChoice === 'papers' && computerChoice === 'rock')) {
-        console.log(`You win! ${humanChoice.charAt(0).toUpperCase()+ humanChoice.slice(1)} beats ${computerChoice}.`);
-        humanScore += 1;
-    } else if (humanChoice === 'error') {
-        console.log('You have entered an invalid choice. Try again.');
-    } else {
-        console.log(`You lose! ${computerChoice.charAt(0).toUpperCase()+ computerChoice.slice(1)} beats ${humanChoice}.`);
-        computerScore += 1;
-    }
-}
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
+
+function playGame() {
+    let humanScore = 0;
+    let computerScore = 0;
+
+    function playRound() {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        if (humanSelection === computerSelection) {
+            console.log("It's a tie!");
+        } else if ((humanSelection === 'rock' && computerSelection === 'scissors') ||
+            (humanSelection === 'scissors' && computerSelection === 'papers') ||
+            (humanSelection === 'papers' && computerSelection === 'rock')) {
+            console.log(`You win! ${humanSelection.charAt(0).toUpperCase() + humanSelection.slice(1)} beats ${computerSelection}.`);
+            humanScore += 1;
+        } else {
+            console.log(`You lose! ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${humanSelection}.`);
+            computerScore += 1;
+        }
+    }
+
+    playRound();
+    playRound();
+    playRound();
+    playRound();
+    playRound();
+    console.log(`Score - Human: ${humanScore} Computer: ${computerScore}`)
+}
+
+playGame();
