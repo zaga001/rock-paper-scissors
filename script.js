@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
     const randomIndex = Math.floor(Math.random() * choices.length);
@@ -11,21 +14,18 @@ const roundResult = document.querySelector('#result');
 const score = document.querySelector('#score');
 const winner = document.querySelector('#winner');
 
-let humanScore = 0;
-let computerScore = 0;
-
-function playRound(playerSelection) {
-    const computerSelection = getComputerChoice();
+function playRound(humanChoice) {
+    const computerChoice = getComputerChoice();
     let resultMessage;
-    if (playerSelection === computerSelection) {
+    if (humanChoice === computerChoice) {
         resultMessage = "It's a tie!";
-    } else if ((playerSelection === 'rock' && computerSelection === 'scissors') ||
-        (playerSelection === 'scissors' && computerSelection === 'paper') ||
-        (playerSelection === 'paper' && computerSelection === 'rock')) {
-        resultMessage = `You win! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}.`;
+    } else if ((humanChoice === 'rock' && computerChoice === 'scissors') ||
+        (humanChoice === 'scissors' && computerChoice === 'paper') ||
+        (humanChoice === 'paper' && computerChoice === 'rock')) {
+        resultMessage = `You win! ${humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1)} beats ${computerChoice}.`;
         humanScore++;
     } else {
-        resultMessage = `You lose! ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}.`;
+        resultMessage = `You lose! ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)} beats ${humanChoice}.`;
         computerScore++;
     }
 
